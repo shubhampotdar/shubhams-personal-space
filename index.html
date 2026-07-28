@@ -1,37 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Shubham's Personal Space</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areas & College Hunt Strategy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-      :root {
-        color-scheme: light dark;
-      }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-content: center;
-        text-align: center;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-          Arial, sans-serif;
-        line-height: 1.5;
-      }
-      h1 {
-        margin: 0 0 0.5rem;
-        font-size: clamp(2rem, 8vw, 3.5rem);
-      }
-      p {
-        margin: 0;
-        opacity: 0.7;
-      }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        /* Custom Accordion Chevron Rotation */
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary {
+            list-style: none;
+        }
+        details[open] summary .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-icon {
+            transition: transform 0.2s ease-in-out;
+            display: inline-block;
+        }
+
+        /* Timeline Line Styling */
+        .timeline-line {
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: 24px;
+            width: 2px;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+        @media (min-width: 640px) {
+            .timeline-line {
+                left: 19px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <main>
-      <h1>Hello</h1>
-      <p>Shubham's personal space — placeholder page.</p>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased overflow-hidden">
+
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay" class="fixed inset-0 z-[100] bg-slate-900 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-5">
+            <div class="w-14 h-14 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center mx-auto text-2xl font-bold shadow-inner">
+                🔒
+            </div>
+            <div>
+                <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Protected Report</h2>
+                <p class="text-xs text-slate-500 mt-1">Please enter the password to view Arya's College Hunt strategy.</p>
+            </div>
+            <form id="password-form" onsubmit="checkPassword(event)" class="space-y-3">
+                <div>
+                    <input type="password" id="password-input" placeholder="Enter Password" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all text-center tracking-widest font-mono">
+                </div>
+                <p id="password-error" class="text-xs text-rose-600 font-semibold hidden">Incorrect password. Please try again.</p>
+                <button type="submit" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-xl shadow-md transition-all active:scale-[0.98]">
+                    Unlock Access
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Protected Root Container (Empty until unlocked) -->
+    <div id="app-root" class="min-h-screen flex flex-col"></div>
+
+    <script>
+        // Content stored in JS memory and dynamically injected ONLY upon valid authentication
+        const protectedContent = `
+    <!-- Sticky Executive Header -->
+    <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 py-4 px-4 sm:px-8 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div>
+                <h1 class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                    Arya's College Hunt
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto w-full px-4 sm:px-6 py-8 space-y-6 flex-grow">
+
+        <!-- Section 1: Bellandur Local Reality & Extended Commute -->
+        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+            <summary class="p-4 sm:p-5 flex items-center justify-between cursor-pointer bg-slate-50/50 select-none">
+                <div>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">1. If we plan to stay in Bellandur</h2>
+                </div>
+                <span class="accordion-icon text-slate-400 font-bold text-lg">↓</span>
+            </summary>
+
+            <div class="p-5 border-t border-slate-100 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Local Radius -->
+                    <div class="bg-slate-50/50 p-4 rounded-xl border border-slate-200/80 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">Immediate Radius (10–15 km)</span>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">1 Active</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li class="flex items-start justify-between p-2.5 bg-white rounded-lg border border-slate-100 shadow-2xs">
+                                <div>
+                                    <strong class="text-slate-900 block font-semibold">GSAP (Gopalan), Hoodi</strong>
+                                    <span class="text-slate-500">12 km | ~40 mins via ORR North</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded border border-emerald-100">Primary Target</span>
+                            </li>
+                            <li class="p-2.5 bg-slate-100/60 rounded-lg border border-slate-200/60 text-slate-400">
+                                <strong class="text-slate-500 block">Oxford SOA (Bommanahalli)</strong>
+                                <span>Phasing out / admissions closed</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Extended Radius -->
+                    <div class="bg-slate-50/50 p-4 rounded-xl border border-slate-200/80 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">Stay in Bellandur, but extra travel</span>
+                            <span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-2 py-0.5 rounded">South Cluster</span>
+                        </div>
+                        <p class="text-xs text-slate-500">Driving down ORR connects directly to top South Bengaluru institutions:</p>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li class="flex justify-between items-center p-2.5 bg-white rounded-lg border border-slate-100">
+                                <span class="font-semibold text-slate-800">BMSCA, Basavanagudi</span>
+                                <span class="text-slate-500 font-mono text-[11px]">18 km • NIRF #21</span>
+                            </li>
+                            <li class="flex justify-between items-center p-2.5 bg-white rounded-lg border border-slate-100">
+                                <span class="font-semibold text-slate-800">DSCA, KS Layout</span>
+                                <span class="text-slate-500 font-mono text-[11px]">20 km • VTU Campus</span>
+                            </li>
+                            <li class="flex justify-between items-center p-2.5 bg-white rounded-lg border border-slate-100">
+                                <span class="font-semibold text-slate-800">RNSSA, Channasandra</span>
+                                <span class="text-slate-500 font-mono text-[11px]">24 km • RR Nagar Axis</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Section 2: Dual-Career Shifting Strategy -->
+        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+            <summary class="p-4 sm:p-5 flex items-center justify-between cursor-pointer bg-slate-50/50 select-none">
+                <div>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">2. If we plan to shift</h2>
+                    <p class="text-xs text-slate-500 font-medium">Analysis of different areas we could shift to based on colleges and a good family-centric living area plus access for Shubham's major tech hubs.</p>
+                </div>
+                <span class="accordion-icon text-slate-400 font-bold text-lg">↓</span>
+            </summary>
+
+            <div class="p-5 border-t border-slate-100 space-y-4">
+                <div class="p-4 bg-amber-50/60 rounded-2xl border border-amber-200/60 text-xs text-amber-900 leading-relaxed">
+                    <strong>Core Strategy:</strong> Finding a lush, family-centric layout with tree-lined avenues and great cafes that places Shubham within minutes of major tech hubs (Manyata, EGL, ORR) while maximizing your proximity to top architecture colleges.
+                </div>
+
+                <!-- Inner Expandable Accordion Clusters -->
+                <div class="space-y-3">
+
+                    <!-- WINNER CLUSTER: Kalyan Nagar -->
+                    <details class="group/inner bg-white rounded-2xl border border-amber-300 shadow-sm overflow-hidden transition-all">
+                        <summary class="p-4 flex items-center justify-between cursor-pointer bg-amber-50/40 select-none">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-full bg-amber-600 text-white font-extrabold flex items-center justify-center text-xs">★</span>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
+                                        Kalyan Nagar / HRBR Layout Cluster
+                                        <span class="text-[9px] bg-amber-600 text-white font-extrabold px-2 py-0.5 rounded-full uppercase">Top Winner</span>
+                                    </h3>
+                                    <p class="text-[11px] text-slate-500">North-East Hub • Outstanding livability & dual accessibility</p>
+                                </div>
+                            </div>
+                            <span class="accordion-icon text-slate-400 font-bold text-base">↓</span>
+                        </summary>
+                        <div class="p-4 pt-2 border-t border-amber-100 text-xs text-slate-600 space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                    <p class="font-bold text-slate-800 text-xs mb-1">💻 Shubham's Tech Access</p>
+                                    <p class="text-slate-600"><strong>10–12 Mins</strong> to Manyata Embassy Business Park. Easy ORR connection to Bagalur IT Corridor & EGL.</p>
+                                </div>
+                                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                    <p class="font-bold text-slate-800 text-xs mb-1">🏛️ Your Academic Access</p>
+                                    <p class="text-slate-600"><strong>15–25 Mins</strong> to 5 top colleges: CMRU SOA, BMSSA, REVA SOA, Sir MVSA, and GSAP.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100 text-emerald-900">
+                                <strong>🏡 Neighborhood Vibe:</strong> Known as the "Indiranagar of the North." Posh, canopy-covered avenues, HRBR 2nd Block parks, independent homes, and famous 80ft Road cafe culture. Perfect for settling long-term.
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- OPTION 2: Indiranagar / Domlur / HSR -->
+                    <details class="group/inner bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+                        <summary class="p-4 flex items-center justify-between cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold flex items-center justify-center text-xs">2</span>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm">Indiranagar / Domlur / HSR Layout Axis</h3>
+                                    <p class="text-[11px] text-slate-500">Central-East Corridor • Premium cosmopolitan hub</p>
+                                </div>
+                            </div>
+                            <span class="accordion-icon text-slate-400 font-bold text-base">↓</span>
+                        </summary>
+                        <div class="p-4 pt-2 border-t border-slate-100 text-xs text-slate-600 space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="p-3 bg-slate-50 rounded-xl">
+                                    <p class="font-bold text-slate-800 text-xs mb-1">💻 Shubham's Access</p>
+                                    <p>Adjacent to Embassy GolfLinks (EGL Domlur), HSR startup belt, and ORR tech parks.</p>
+                                </div>
+                                <div class="p-3 bg-slate-50 rounded-xl">
+                                    <p class="font-bold text-slate-800 text-xs mb-1">🏛️ Your Academic Access</p>
+                                    <p>Central connection: ~25–35 mins to GSAP (Hoodi) and BMSCA (Basavanagudi).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- OPTION 3: Jayanagar / JP Nagar -->
+                    <details class="group/inner bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+                        <summary class="p-4 flex items-center justify-between cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold flex items-center justify-center text-xs">3</span>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm">Jayanagar / JP Nagar Axis</h3>
+                                    <p class="text-[11px] text-slate-500">South Bengaluru • Classic green residential layout</p>
+                                </div>
+                            </div>
+                            <span class="accordion-icon text-slate-400 font-bold text-base">↓</span>
+                        </summary>
+                        <div class="p-4 pt-2 border-t border-slate-100 text-xs text-slate-600 space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="p-3 bg-slate-50 rounded-xl">
+                                    <p class="font-bold text-slate-800 text-xs mb-1">💻 Shubham's Access</p>
+                                    <p>Commutable via Silk Board elevated highway to ORR Bellandur or South to Electronic City.</p>
+                                </div>
+                                <div class="p-3 bg-slate-50 rounded-xl">
+                                    <p class="font-bold text-slate-800 text-xs mb-1">🏛️ Your Academic Access</p>
+                                    <p><strong>10–20 Mins</strong> to premier South schools: BMSCA, DSCA, RVCA, and RNSSA.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+        </details>
+
+        <!-- Section 3: Master Tuesday Driving Itinerary -->
+        <section class="space-y-6 pt-4">
+            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-2">
+                    <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">3. Master Tuesday Driving Circuit</h2>
+                    <span class="text-xs font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded-full uppercase tracking-wider w-fit">Single-Day Plan</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    A non-stop, 5-stop sequential driving itinerary starting from Bellandur in your personal car. Designed to cover local, North, and South targets, plus lunch & neighborhood scouting in Kalyan Nagar.
+                </p>
+            </div>
+
+            <!-- Straight-up Non-Expandable Interactive Timeline -->
+            <div class="relative pl-6 sm:pl-10 space-y-8 my-6">
+                <div class="timeline-line"></div>
+
+                <!-- DEPARTURE -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-slate-900 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">▶</div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm w-full flex justify-between items-center text-xs">
+                        <div>
+                            <span class="font-extrabold text-amber-700 uppercase tracking-wider text-[10px]">08:30 AM Departure</span>
+                            <h3 class="font-bold text-slate-900">Start from Bellandur Base</h3>
+                        </div>
+                        <span class="text-slate-400 font-mono text-[11px]">ORR North Route</span>
+                    </div>
+                </div>
+
+                <!-- STOP 1: GSAP -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-amber-600 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">1</div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full space-y-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">09:15 AM – 10:15 AM</span>
+                                <h3 class="text-base font-bold text-slate-900">Gopalan School of Arch & Planning (GSAP)</h3>
+                                <p class="text-xs text-slate-500">Seetharampalya, Hoodi • ~12 km from Bellandur (40m drive)</p>
+                            </div>
+                            <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">Primary Local</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-700 border border-slate-100">
+                            <strong>Action:</strong> Park in visitor lot. Submit physical dossier to Principal's Office / Ar. Vinoth Kumar. Emphasize M.Arch Project Mgmt credential.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STOP 2: CMRU -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-amber-600 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">2</div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full space-y-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">11:00 AM – 11:45 AM</span>
+                                <h3 class="text-base font-bold text-slate-900">CMR University SOA (Lakeside Campus)</h3>
+                                <p class="text-xs text-slate-500">Chagalatti, Bagalur • ~18 km from Hoodi (40m drive via Hennur Rd)</p>
+                            </div>
+                            <span class="text-[10px] bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded">North-East</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-700 border border-slate-100">
+                            <strong>Action:</strong> Visit the Dean's Office at the new 80-acre campus. Mention Trakstar digital application submission.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STOP 3: REVA SOA -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-amber-600 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">3</div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full space-y-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">12:00 PM – 12:45 PM</span>
+                                <h3 class="text-base font-bold text-slate-900">REVA University School of Architecture</h3>
+                                <p class="text-xs text-slate-500">Kattigenahalli, Yelahanka • ~10 km from Bagalur (15m drive via Bagalur Main Rd)</p>
+                            </div>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">High Capacity</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-700 border border-slate-100">
+                            <strong>Action:</strong> Visit the Director’s Desk at the School of Architecture block. Large intake capacity with frequent B.Arch studio faculty openings.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STOP 4: BMSSA -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-amber-600 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">4</div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full space-y-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">01:00 PM – 01:45 PM</span>
+                                <h3 class="text-base font-bold text-slate-900">BMS School of Architecture (BMSSA)</h3>
+                                <p class="text-xs text-slate-500">Avalahalli, Yelahanka • ~6 km from REVA (12m drive)</p>
+                            </div>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Rolling Hiring</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-700 border border-slate-100">
+                            <strong>Action:</strong> Deliver application folder at Admin/Director’s Desk (hr@bmssa.ac.in).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MIDDAY SCOUTING BREAK -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-emerald-600 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">★</div>
+                    <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-200 shadow-sm w-full space-y-2 text-emerald-950">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold text-emerald-700 uppercase tracking-wider">02:15 PM – 03:15 PM</span>
+                                <h3 class="text-base font-bold text-emerald-900">Lunch & Relocation Scouting: Kalyan Nagar</h3>
+                                <p class="text-xs text-emerald-700">80ft Road / HRBR Layout 2nd Block • ~14 km South from Yelahanka (25m drive)</p>
+                            </div>
+                            <span class="text-[10px] bg-emerald-600 text-white font-bold px-2 py-0.5 rounded">Strategy Pause</span>
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-xl text-xs text-emerald-900 border border-emerald-100">
+                            <strong>Scouting Tasks:</strong> Grab lunch along 80ft Road. Drive through HRBR 2nd Block residential avenues. Check tree-lined streets, cafe quality, and test the 10-minute route to Manyata Tech Park for Shubham.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STOP 5: BMSCA -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-slate-800 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">5</div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full space-y-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">03:55 PM – 04:35 PM</span>
+                                <h3 class="text-base font-bold text-slate-900">BMS College of Architecture (BMSCA)</h3>
+                                <p class="text-xs text-slate-500">Bull Temple Rd, Basavanagudi • ~18 km from Kalyan Nagar (40m drive)</p>
+                            </div>
+                            <span class="text-[10px] bg-slate-900 text-white font-bold px-2 py-0.5 rounded">Prestige #1</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-700 border border-slate-100">
+                            <strong>Action:</strong> Hand over portfolio and resume to Director's Office at NIRF Rank 21 autonomous institute.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STOP 6: DSCA -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-slate-800 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">6</div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full space-y-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">04:55 PM – 05:35 PM</span>
+                                <h3 class="text-base font-bold text-slate-900">Dayananda Sagar College of Arch (DSCA)</h3>
+                                <p class="text-xs text-slate-500">KS Layout • ~7 km from BMSCA (20m drive via Kanakapura Rd)</p>
+                            </div>
+                            <span class="text-[10px] bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded">High Volume</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-700 border border-slate-100">
+                            <strong>Action:</strong> Hand in resume packet at Architecture Block Admin / HOD Desk (hod-arc@dayanandasagar.edu).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FINISH -->
+                <div class="relative flex items-start gap-4">
+                    <div class="absolute -left-[30px] sm:-left-[46px] top-1 w-6 h-6 rounded-full bg-slate-900 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">✓</div>
+                    <div class="bg-slate-900 text-white p-4 rounded-xl shadow w-full flex justify-between items-center text-xs">
+                        <div>
+                            <span class="font-extrabold text-amber-400 uppercase tracking-wider text-[10px]">05:35 PM Return</span>
+                            <h3 class="font-bold">Join ORR at Banashankari & Drive Back to Bellandur</h3>
+                        </div>
+                        <span class="text-slate-400 font-mono text-[11px]">Loop Complete</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
-  </body>
+        `;
+
+        function checkPassword(event) {
+            event.preventDefault();
+            const input = document.getElementById('password-input').value;
+            const error = document.getElementById('password-error');
+            const overlay = document.getElementById('password-overlay');
+            const root = document.getElementById('app-root');
+
+            if (input === 'CollegeResearch2027') {
+                overlay.style.display = 'none';
+                root.innerHTML = protectedContent;
+                document.body.classList.remove('overflow-hidden');
+            } else {
+                error.classList.remove('hidden');
+                document.getElementById('password-input').classList.add('border-rose-500');
+            }
+        }
+    </script>
+</body>
 </html>
